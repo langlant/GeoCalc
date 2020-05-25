@@ -1,20 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Calculator from './screens/Calculator';
+import { StyleSheet, SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import CalculatorScreen from './screens/CalculatorScreen';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Calculator />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <SafeAreaView style={styles.container} >
+        <CalculatorScreen />
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'flex-start',
+    backgroundColor: "#fff",
+    margin: 20,
+    flex: 1
   },
 });
