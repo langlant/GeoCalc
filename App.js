@@ -12,14 +12,11 @@ export default function App() {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#grey",
+    backgroundColor: "ffffff",
     margin: 20,
     flex: 1
   },
-  h1: {
-   backgroundColor: "#blue",
-   flex: 1
-  }
 });
