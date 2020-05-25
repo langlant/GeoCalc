@@ -81,8 +81,11 @@ const CalculatorScreen = () => {
   };
 
   return (
+
     <Padder>
-      <Text style={styles.h1}>Geo Calculator</Text>
+      <Padder>
+        <Text style={styles.header}> Geo Calculator</Text>
+      </Padder>
       <Input
         placeholder="Enter latitude for point 1"
         value={state.lat1}
@@ -165,8 +168,8 @@ const CalculatorScreen = () => {
           }}
         />
       </Padder>
-      <Text>{state.distance}</Text>
-      <Text>{state.bearing}</Text>
+      <Text style={styles.output}>{state.distance}</Text>
+      <Text style={styles.output}>{state.bearing}</Text>
     </Padder>
   );
 };
@@ -177,6 +180,17 @@ const styles = StyleSheet.create({
   },
   input: {
     color: 'red'
+  },
+  header: {
+    textAlign: 'center',
+    backgroundColor: "#0098c7",
+    color: 'white',
+    fontSize: 50
+  },
+  output: {
+    borderWidth: 1,
+    borderColor: 'black'
+    
   }
 });
 
