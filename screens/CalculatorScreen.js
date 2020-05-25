@@ -82,6 +82,7 @@ const CalculatorScreen = () => {
 
   return (
     <Padder>
+      <Text style={styles.h1}>Geo Calculator</Text>
       <Input
         placeholder="Enter latitude for point 1"
         value={state.lat1}
