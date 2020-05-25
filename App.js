@@ -14,12 +14,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#5893D2",
+    backgroundColor: "#grey",
     margin: 20,
     flex: 1
   },
   h1: {
-   backgroundColor: "#f50101",
+   backgroundColor: "#blue",
    flex: 1
   }
 });
