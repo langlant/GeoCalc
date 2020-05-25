@@ -190,7 +190,6 @@ const styles = StyleSheet.create({
   output: {
     borderWidth: 1,
     borderColor: 'black'
-    
   }
 });
 
