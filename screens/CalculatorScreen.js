@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, Keyboard } from "react-native";
 import { Button, Input, Card } from "react-native-elements";
 import Padder from "../components/Padder";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { Feather } from '@expo/vector-icons';
 
 
 const CalculatorScreen = ({ navigation }) => {
@@ -81,15 +83,18 @@ const CalculatorScreen = ({ navigation }) => {
     });
   };
 
+  navigation.setOptions({
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+        <Feather style={{ marginRight: 10 }} name="edit" size={24} />
+      </TouchableOpacity>
+    ),
+  });
   return (
 
     <Padder>
       <Padder>
         <Text style={styles.header}> Geo Calculator</Text>
-        <Button
-        title = 'Settings'
-        onPress = {() => navigation.push('Settings')}
-        />
       </Padder>
       <Input
         placeholder="Enter latitude for point 1"
