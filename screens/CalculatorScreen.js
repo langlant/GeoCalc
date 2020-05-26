@@ -190,7 +190,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: "#0098c7",
     color: 'white',
-    fontSize: 50
+    fontSize: 25,
+    textAlign: 'center'
   },
   output: {
     borderWidth: 1,
