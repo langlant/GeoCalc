@@ -1,14 +1,25 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import CalculatorScreen from './screens/CalculatorScreen';
+import Settings from './screens/Settings';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 export default function App() {
-  return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <SafeAreaView style={styles.container} >
-        <CalculatorScreen />
-      </SafeAreaView>
+  
+  const Stack = createStackNavigator();
+
+  return(
+    <NavigationContainer>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Stack.Navigator>
+        <Stack.Screen name = "Geo Calculator" component ={CalculatorScreen} />
+        <Stack.Screen name = "Settings" component={Settings}/>
+      </Stack.Navigator>
+    
     </TouchableWithoutFeedback>
+    </NavigationContainer>
   );
 }
 
