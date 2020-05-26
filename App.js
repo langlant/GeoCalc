@@ -14,8 +14,8 @@ export default function App() {
     <NavigationContainer>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Stack.Navigator>
-        <Stack.Screen name = "Geo Calculator" component ={CalculatorScreen} />
-        <Stack.Screen name = "Settings" component={Settings}/>
+        <Stack.Screen name = "Geo Calculator" component = {CalculatorScreen} />
+        <Stack.Screen name = "Settings" component = {Settings} />
       </Stack.Navigator>
     
     </TouchableWithoutFeedback>

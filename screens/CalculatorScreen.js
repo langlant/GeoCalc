@@ -3,6 +3,7 @@ import { StyleSheet, Text, Keyboard } from "react-native";
 import { Button, Input, Card } from "react-native-elements";
 import Padder from "../components/Padder";
 
+
 const CalculatorScreen = ({ navigation }) => {
   const [state, setState] = useState({
     lat1: "",
@@ -87,7 +88,7 @@ const CalculatorScreen = ({ navigation }) => {
         <Text style={styles.header}> Geo Calculator</Text>
         <Button
         title = 'Settings'
-        onPress = {() => NavigationPreloadManager.push(Settings)}
+        onPress = {() => navigation.push('Settings')}
         />
       </Padder>
       <Input
