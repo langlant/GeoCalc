@@ -4,6 +4,8 @@ import { Button, Input, Card } from "react-native-elements";
 import Padder from "../components/Padder";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
+import {distPick, bearingPick} from './Settings';
+
 
 
 const CalculatorScreen = ({ navigation }) => {
@@ -15,6 +17,8 @@ const CalculatorScreen = ({ navigation }) => {
     distance: "",
     bearing: "",
   });
+  const [distPick, setDistPick] = useState('');
+  const [bearingPick, setBearingPick] = useState('');
 
   // Converts from degrees to radians.
   function toRadians(degrees) {
@@ -85,7 +89,8 @@ const CalculatorScreen = ({ navigation }) => {
 
   navigation.setOptions({
     headerRight: () => (
-      <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+      <TouchableOpacity onPress={() => navigation.navigate(
+        'Settings', {distPick, bearingPick})}>
         <Feather style={{ marginRight: 10 }} name="edit" size={24} />
       </TouchableOpacity>
     ),

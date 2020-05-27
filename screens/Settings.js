@@ -6,35 +6,27 @@ import { Dropdown } from "react-native-material-dropdown";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
 
-const Settings = ({ navigation }) => {
-    const [state, setState] = useState({
-        distPick: "Kilometers",
-      });
+const Settings = ({ navigation, route }) => {
 
-      let distPick = [{
-          value: 'Kilometers',
-      }, {
-          value: 'Miles',
-      }];
-      let bearingPick = [{
-          value: 'Degrees',
-      }, {
-          value: 'Mils',
-      
-      }];
+    const initialDist = route.params.distPick;
+    const initialBearing = route.params.bearingPick;
+    const [distPick, setDistPick] = useState(initialDist);
+    const [bearingPick, setBearingPick] = useState(initialBearing);
+    const text = ['Kilometers', 'Miles'];
+    
 
     navigation.setOptions({
-        headerRight: () => (
+        headerLeft: () => (
             <TouchableOpacity onPress = {() => navigation.navigate('CalculatorScreen')}>
-                <Text> Cancel</Text>
+                <Feather style={{ marginRight: 10 }} name="trash" size={24} />
                 </TouchableOpacity>
 
         ),
-        headerLeft: () => (
+        headerRight: () => (
             <TouchableOpacity onPress={() => {
                 navigation.navigate('CalculatorScreen', {distPick, bearingPick});
             }}>
-                <Text> Save </Text>
+                <Feather style={{ marginRight: 10 }} name="save" size={24} />
             </TouchableOpacity>
         ),
     });
@@ -43,11 +35,13 @@ const Settings = ({ navigation }) => {
         <Padder>
             <Dropdown
             label = 'Distance Type'
-            distPick = {distPick}
+            value = {distPick}
+            onChangeText = {(text) => setDistPick(distPick)}
             />
             <Dropdown
             label = 'Navigational Type'
-            bearingPick = {bearingPick}
+            value = {bearingPick}
+            onChangeText = {(text) => setBearingPick(bearingPick)}
             /> 
       </Padder>
     );
