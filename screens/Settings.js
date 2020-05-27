@@ -8,8 +8,7 @@ import { Feather } from '@expo/vector-icons';
 
 const Settings = ({ navigation, route }) => {
 
-    const initialDist = route.params.distPick;
-    const initialBearing = route.params.bearingPick;
+
     const [distPick, setDistPick] = useState({distPick: ['Kilometers', 'Miles']});
     const [bearingPick, setBearingPick] = useState({bearingPick: ['Degrees', 'Mils']});
 
