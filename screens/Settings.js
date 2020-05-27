@@ -22,9 +22,9 @@ const Settings = ({ navigation, route }) => {
 
         ),
         headerRight: () => (
-            <TouchableOpacity onPress={() => {
-                navigation.navigate('CalculatorScreen', {distPick, bearingPick});
-            }}>
+            <TouchableOpacity onPress={() =>
+                navigation.navigate('CalculatorScreen', {distPick, bearingPick})
+            }>
                 <Feather style={{ marginRight: 10 }} name="save" size={24} />
             </TouchableOpacity>
         ),

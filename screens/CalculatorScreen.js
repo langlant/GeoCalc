@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, Keyboard } from "react-native";
-import { Button, Input, Card } from "react-native-elements";
+import { Button, Input } from "react-native-elements";
 import Padder from "../components/Padder";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
 
 
-const CalculatorScreen = ({ navigation }) => {
+
+const CalculatorScreen = ({ navigation, route }) => {
   const [state, setState] = useState({
     lat1: "",
     lon1: "",
@@ -63,7 +64,8 @@ const CalculatorScreen = ({ navigation }) => {
     var brng = Math.atan2(y, x);
     brng = toDegrees(brng);
     if(bearingPick == 'Mils'){
-      return (brng * 17.777777777778);
+      brng = (brng * 17.777777777778);
+      return `${round(brng, 3)}`;
     } else{
     return (brng + 360) % 360;
     }
