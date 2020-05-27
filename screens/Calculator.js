@@ -53,7 +53,7 @@ const Calculator = ({ navigation, route }) => {
     var d = R * c;
     if(distPick == "Miles"){
       d = d * 0.621371;
-      return `${round(d, 3)} miles`;
+      return `${round(d, 3)} Miles`;
     } else{
     return `${round(d, 3)} km`;
     }
@@ -73,12 +73,12 @@ const Calculator = ({ navigation, route }) => {
       Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
     var brng = Math.atan2(y, x);
     brng = toDegrees(brng);
-    if(bearingPick == 'Mils'){
+    if(bearingPick == "Mils"){
       brng = brng * 17.777777777778;
       return `${round(brng, 3)} Mils`;
     } else{
-      return (brng + 360) % 360;
-    };
+      return `${round(((brng + 360) % 360), 3)} Degrees`;
+    }
   }
 
   function round(value, decimals) {
@@ -179,7 +179,7 @@ const Calculator = ({ navigation, route }) => {
               var bear = computeBearing(p1.lat, p1.lon, p2.lat, p2.lon);
               updateStateObject({
                 distance: `Distance: ${dist}`,
-                bearing: `Bearing: ${round(bear, 3)} degrees`,
+                bearing: `Bearing: ${bear}`
               });
           }
         }}
