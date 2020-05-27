@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 
 
 
-const CalculatorScreen = ({ navigation, route }) => {
+const Calculator = ({ navigation, route }) => {
   const [state, setState] = useState({
     lat1: "",
     lon1: "",
@@ -218,4 +218,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CalculatorScreen;
+export default Calculator;

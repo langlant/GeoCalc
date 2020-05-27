@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import CalculatorScreen from './screens/CalculatorScreen';
+import Calculator from './screens/Calculator';
 import Settings from './screens/Settings';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -14,7 +14,7 @@ export default function App() {
     <NavigationContainer>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Stack.Navigator>
-        <Stack.Screen name = "Geo Calculator" component = {CalculatorScreen} />
+        <Stack.Screen name = "Calculator" component = {Calculator} />
         <Stack.Screen name = "Settings" component = {Settings} />
       </Stack.Navigator>
     

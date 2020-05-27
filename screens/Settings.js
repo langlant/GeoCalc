@@ -16,14 +16,14 @@ const Settings = ({ navigation, route }) => {
 
     navigation.setOptions({
         headerLeft: () => (
-            <TouchableOpacity onPress = {() => navigation.navigate('CalculatorScreen')}>
+            <TouchableOpacity onPress = {() => navigation.navigate('Calculator')}>
                 <Feather style={{ marginRight: 10 }} name="trash" size={24} />
                 </TouchableOpacity>
 
         ),
         headerRight: () => (
             <TouchableOpacity onPress={() =>
-                navigation.navigate('CalculatorScreen', {distPick, bearingPick})
+                navigation.navigate('Calculator', {distPick, bearingPick})
             }>
                 <Feather style={{ marginRight: 10 }} name="save" size={24} />
             </TouchableOpacity>
