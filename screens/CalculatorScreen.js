@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, Keyboard, TouchableOpacity } from "react-native";
 import { Button, Input, Card } from "react-native-elements";
 import Padder from "../components/Padder";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
 
 
@@ -14,6 +15,8 @@ const CalculatorScreen = ({ navigation }) => {
     distance: "",
     bearing: "",
   });
+  const [distPick, setDistPick] = useState('');
+  const [bearingPick, setBearingPick] = useState('');
 
   // Converts from degrees to radians.
   function toRadians(degrees) {
@@ -38,7 +41,12 @@ const CalculatorScreen = ({ navigation }) => {
         Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
+    if(distPick == 'Miles'){
+      d = d * 0.621371;
+      return  `${round(d, 3)} miles`;
+    } else{
     return `${round(d, 3)} km`;
+    }
   }
 
   // Computes bearing between two geocoordinates in degrees. 
@@ -54,7 +62,11 @@ const CalculatorScreen = ({ navigation }) => {
       Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
     var brng = Math.atan2(y, x);
     brng = toDegrees(brng);
+    if(bearingPick == 'Mils'){
+      return (brng * 17.777777777778);
+    } else{
     return (brng + 360) % 360;
+    }
   }
 
   function round(value, decimals) {
@@ -83,16 +95,18 @@ const CalculatorScreen = ({ navigation }) => {
   };
 
   navigation.setOptions({
-  })
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate(
+        'Settings', {distPick, bearingPick})}>
+        <Feather style={{ marginRight: 10 }} name="edit" size={24} />
+      </TouchableOpacity>
+    ),
+  });
   return (
 
     <Padder>
       <Padder>
         <Text style={styles.header}> Geo Calculator</Text>
-        <Button
-        title = 'Settings'
-        onPress = {() => navigation.push('Settings')}
-        />
       </Padder>
       <Input
         placeholder="Enter latitude for point 1"

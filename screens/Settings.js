@@ -2,41 +2,51 @@ import React, { Component, useState, useEffect } from "react";
 import { StyleSheet, Text, Keyboard, View, TouchableOpacity } from "react-native";
 import { Input, Button } from "react-native-elements";
 import Padder from "../components/Padder";
+import { Dropdown } from "react-native-material-dropdown";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
-import { Dropdown } from 'react-native-material-dropdown';
 
-const Settings = ({ navigation }) => {
-    const [state, setState] = useState({
-        distanceSet: 1,
-        bearingSet: 1,
-        distPick: 'Kilometers',
-      });
+const Settings = ({ navigation, route }) => {
 
-  
-      navigation.setOptions({
-        headerRight: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('CalculatorScreen')}>
-            <Text> Cancel </Text>
-          </TouchableOpacity>
-        ),
+    const [distPick, setDistPick] = useState('Kilometers');
+    const [bearingPick, setBearingPick] = useState('Degrees');
+    const dUnits = ['Kilometers', 'Miles'];
+    const bUnits = ['Degrees', 'Mils'];
+    
+
+    navigation.setOptions({
         headerLeft: () => (
-          <TouchableOpacity>
-            <Text> Save </Text>
-          </TouchableOpacity>
+            <TouchableOpacity onPress = {() => navigation.navigate('CalculatorScreen')}>
+                <Feather style={{ marginRight: 10 }} name="trash" size={24} />
+                </TouchableOpacity>
+
         ),
-      }); 
-      let distPick = [{
-          value: 'Kilometers',
-      }, {
-          value: 'Miles',
-      }];
-      return(
-    <Padder>
-       <Dropdown
-       label = 'Distance Type'
-       distPick = {distPick}
-       />
-    </Padder>
+        headerRight: () => (
+            <TouchableOpacity onPress={() => {
+                navigation.navigate('CalculatorScreen', {distPick, bearingPick});
+            }}>
+                <Feather style={{ marginRight: 10 }} name="save" size={24} />
+            </TouchableOpacity>
+        ),
+    });
+
+    return(
+        <Padder>
+            <Dropdown
+            label = 'Distance Type'
+            value = {distPick}
+            data = {dUnits}
+            onChangeText = {(text) => setDistPick(text)}
+
+            />
+            <Dropdown
+            label = 'Navigational Type'
+            value = {bearingPick}
+            data = {bUnits}
+            onChangeText = {(text) => setBearingPick(text)}
+
+            /> 
+      </Padder>
     );
 } 
 
