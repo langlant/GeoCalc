@@ -10,11 +10,9 @@ const Settings = ({ navigation, route }) => {
 
     const initialDist = route.params.distPick;
     const initialBearing = route.params.bearingPick;
-    const [distPick, setDistPick] = useState(initialDist);
-    const [bearingPick, setBearingPick] = useState(initialBearing);
-    const textd = ['Kilometers', 'Miles'];
-    const textb = ['Degrees', 'Mils'];
-    
+    const [distPick, setDistPick] = useState({distPick: ['Kilometers', 'Miles']});
+    const [bearingPick, setBearingPick] = useState({bearingPick: ['Degrees', 'Mils']});
+
 
     navigation.setOptions({
         headerLeft: () => (
@@ -37,12 +35,12 @@ const Settings = ({ navigation, route }) => {
             <Dropdown
             label = 'Distance Type'
             value = {distPick}
-            onChangeText = {(textd) => setDistPick(distPick)}
+            onChangeText = {(text) => setDistPick(text)}
             />
             <Dropdown
             label = 'Navigational Type'
             value = {bearingPick}
-            onChangeText = {(textb) => setBearingPick(bearingPick)}
+            onChangeText = {(text) => setBearingPick(text)}
             /> 
       </Padder>
     );
