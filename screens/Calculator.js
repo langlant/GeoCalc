@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, Keyboard } from "react-native";
 import { Button, Input } from "react-native-elements";
 import Padder from "../components/Padder";
@@ -16,8 +16,17 @@ const Calculator = ({ navigation, route }) => {
     distance: "",
     bearing: "",
   });
-  const [distPick, setDistPick] = useState('');
-  const [bearingPick, setBearingPick] = useState('');
+  const [distPick, setDistPick] = useState('Kilometers');
+  const [bearingPick, setBearingPick] = useState('Degrees');
+ 
+  useEffect(() => {
+    if (route.params?.distPick) {
+      setDistPick(route.params.distPick)
+    }
+    if (route.params?.bearingPick) {
+      setBearingPick(route.params.bearingPick);
+    }
+  }, [route.params?.distPick, route.params?.bearingPick]);
 
   // Converts from degrees to radians.
   function toRadians(degrees) {
@@ -42,12 +51,13 @@ const Calculator = ({ navigation, route }) => {
         Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
-    if(distPick == 'Miles'){
+    if(distPick == "Miles"){
       d = d * 0.621371;
-      return  `${round(d, 3)} miles`;
+      return `${round(d, 3)} miles`;
     } else{
     return `${round(d, 3)} km`;
     }
+    
   }
 
   // Computes bearing between two geocoordinates in degrees. 
@@ -64,11 +74,11 @@ const Calculator = ({ navigation, route }) => {
     var brng = Math.atan2(y, x);
     brng = toDegrees(brng);
     if(bearingPick == 'Mils'){
-      brng = (brng * 17.777777777778);
-      return `${round(brng, 3)}`;
+      brng = brng * 17.777777777778;
+      return `${round(brng, 3)} Mils`;
     } else{
-    return (brng + 360) % 360;
-    }
+      return (brng + 360) % 360;
+    };
   }
 
   function round(value, decimals) {
