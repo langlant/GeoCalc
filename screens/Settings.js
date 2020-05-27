@@ -1,28 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, Keyboard, View } from "react-native";
+import React, { Component, useState, useEffect } from "react";
+import { StyleSheet, Text, Keyboard, View, TouchableOpacity } from "react-native";
 import { Input, Button } from "react-native-elements";
 import Padder from "../components/Padder";
+import { Feather } from '@expo/vector-icons';
+import { Dropdown } from 'react-native-material-dropdown';
 
 const Settings = ({ navigation }) => {
     const [state, setState] = useState({
-        distanceSet: "",
-        bearingSet: "",
+        distanceSet: 1,
+        bearingSet: 1,
+        distPick: 'Kilometers',
       });
-    return(
-        <Padder>
-        <Text style={styles.header}> Settings</Text>
-        <Button
-        title = 'Save'
-        onPress = {() => navigation.navigate(
-            'CalculatorScreen')}
-        />
-        <Button
-        title = 'Cancel'
-        onPress = {() => navigation.push('CalculatorScreen')}
-        />
-      </Padder>
+
+  
+      navigation.setOptions({
+        headerRight: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('CalculatorScreen')}>
+            <Text> Cancel </Text>
+          </TouchableOpacity>
+        ),
+        headerLeft: () => (
+          <TouchableOpacity>
+            <Text> Save </Text>
+          </TouchableOpacity>
+        ),
+      }); 
+      let distPick = [{
+          value: 'Kilometers',
+      }, {
+          value: 'Miles',
+      }];
+      return(
+    <Padder>
+       <Dropdown
+       label = 'Distance Type'
+       distPick = {distPick}
+       />
+    </Padder>
     );
-}
+} 
 
 const styles = StyleSheet.create({
     header: {
@@ -34,4 +50,3 @@ const styles = StyleSheet.create({
 });
 
 export default Settings;
-export {distanceSet, bearingSet}

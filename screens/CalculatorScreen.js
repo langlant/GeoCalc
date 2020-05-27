@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Keyboard } from "react-native";
+import { StyleSheet, Text, Keyboard, TouchableOpacity } from "react-native";
 import { Button, Input, Card } from "react-native-elements";
 import Padder from "../components/Padder";
+import { Feather } from '@expo/vector-icons';
 
 
 const CalculatorScreen = ({ navigation }) => {
@@ -81,6 +82,8 @@ const CalculatorScreen = ({ navigation }) => {
     });
   };
 
+  navigation.setOptions({
+  })
   return (
 
     <Padder>
