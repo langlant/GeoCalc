@@ -8,10 +8,11 @@ import { Feather } from '@expo/vector-icons';
 
 const Settings = ({ navigation, route }) => {
 
-
-    const [distPick, setDistPick] = useState({distPick: ['Kilometers', 'Miles']});
-    const [bearingPick, setBearingPick] = useState({bearingPick: ['Degrees', 'Mils']});
-
+    const [distPick, setDistPick] = useState('Kilometers');
+    const [bearingPick, setBearingPick] = useState('Degrees');
+    const dUnits = ['Kilometers', 'Miles'];
+    const bUnits = ['Degrees', 'Mils'];
+    
 
     navigation.setOptions({
         headerLeft: () => (
@@ -34,12 +35,16 @@ const Settings = ({ navigation, route }) => {
             <Dropdown
             label = 'Distance Type'
             value = {distPick}
+            data = {dUnits}
             onChangeText = {(text) => setDistPick(text)}
+
             />
             <Dropdown
             label = 'Navigational Type'
             value = {bearingPick}
+            data = {bUnits}
             onChangeText = {(text) => setBearingPick(text)}
+
             /> 
       </Padder>
     );

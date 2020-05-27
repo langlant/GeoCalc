@@ -15,10 +15,8 @@ const CalculatorScreen = ({ navigation }) => {
     distance: "",
     bearing: "",
   });
-  const initialDist = route.params.distPick;
-  const initialBearing = route.params.bearingPick;
-  const [distPick, setDistPick] = useState(initialDist);
-  const [bearingPick, setBearingPick] = useState(initialBearing);
+  const [distPick, setDistPick] = useState('');
+  const [bearingPick, setBearingPick] = useState('');
 
   // Converts from degrees to radians.
   function toRadians(degrees) {
@@ -46,7 +44,7 @@ const CalculatorScreen = ({ navigation }) => {
     if(distPick == 'Miles'){
       d = d * 0.621371;
       return  `${round(d, 3)} miles`;
-    } else
+    } else{
     return `${round(d, 3)} km`;
     }
   }
