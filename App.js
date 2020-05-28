@@ -13,8 +13,19 @@ export default function App() {
   return(
     <NavigationContainer>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Stack.Navigator>
-        <Stack.Screen name = "Calculator" component = {Calculator} />
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#0098c7",
+          },
+          headerTitleStyle: {
+            textAlign: 'center',
+            flext: 1
+            
+          }
+        }}
+      >
+        <Stack.Screen name = "Calculator" component = {Calculator}/>
         <Stack.Screen name = "Settings" component = {Settings} />
       </Stack.Navigator>
     
