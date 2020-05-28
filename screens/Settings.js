@@ -8,23 +8,29 @@ import { Feather } from '@expo/vector-icons';
 
 const Settings = ({ navigation, route }) => {
 
-    const [distPick, setDistPick] = useState('Kilometers');
-    const [bearingPick, setBearingPick] = useState('Degrees');
-    const dUnits = ['Kilometers', 'Miles'];
-    const bUnits = ['Degrees', 'Mils'];
+    const initialDistPick = route.params.distPick;
+    const initialBearingPick = route.params.bearingPick;
+    const [distPick, setDistPick] = useState(initialDistPick);
+    const [bearingPick, setBearingPick] = useState(initialBearingPick);
+    const dUnits = [
+        {value: 'Miles',},
+        {value: 'Kilometers',},];
+    const bUnits = [
+        {value: 'Degrees',},
+        {value: 'Mils',},];
     
 
     navigation.setOptions({
         headerLeft: () => (
-            <TouchableOpacity onPress = {() => navigation.navigate('CalculatorScreen')}>
+            <TouchableOpacity onPress = {() => navigation.navigate('Calculator')}>
                 <Feather style={{ marginRight: 10 }} name="trash" size={24} />
                 </TouchableOpacity>
 
         ),
         headerRight: () => (
-            <TouchableOpacity onPress={() => {
-                navigation.navigate('CalculatorScreen', {distPick, bearingPick});
-            }}>
+            <TouchableOpacity onPress={() =>
+                navigation.navigate('Calculator', {distPick, bearingPick})
+            }>
                 <Feather style={{ marginRight: 10 }} name="save" size={24} />
             </TouchableOpacity>
         ),

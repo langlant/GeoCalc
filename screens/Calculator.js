@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, Keyboard, TouchableOpacity } from "react-native";
-import { Button, Input, Card } from "react-native-elements";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, Keyboard } from "react-native";
+import { Button, Input } from "react-native-elements";
 import Padder from "../components/Padder";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
 
 
-const CalculatorScreen = ({ navigation }) => {
+
+const Calculator = ({ navigation, route }) => {
   const [state, setState] = useState({
     lat1: "",
     lon1: "",
@@ -15,8 +16,17 @@ const CalculatorScreen = ({ navigation }) => {
     distance: "",
     bearing: "",
   });
-  const [distPick, setDistPick] = useState('');
-  const [bearingPick, setBearingPick] = useState('');
+  const [distPick, setDistPick] = useState('Kilometers');
+  const [bearingPick, setBearingPick] = useState('Degrees');
+ 
+  useEffect(() => {
+    if (route.params?.distPick) {
+      setDistPick(route.params.distPick)
+    }
+    if (route.params?.bearingPick) {
+      setBearingPick(route.params.bearingPick);
+    }
+  }, [route.params?.distPick, route.params?.bearingPick]);
 
   // Converts from degrees to radians.
   function toRadians(degrees) {
@@ -41,12 +51,13 @@ const CalculatorScreen = ({ navigation }) => {
         Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
-    if(distPick == 'Miles'){
+    if(distPick == "Miles"){
       d = d * 0.621371;
-      return  `${round(d, 3)} miles`;
+      return `${round(d, 3)} Miles`;
     } else{
     return `${round(d, 3)} km`;
     }
+    
   }
 
   // Computes bearing between two geocoordinates in degrees. 
@@ -62,10 +73,11 @@ const CalculatorScreen = ({ navigation }) => {
       Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
     var brng = Math.atan2(y, x);
     brng = toDegrees(brng);
-    if(bearingPick == 'Mils'){
-      return (brng * 17.777777777778);
+    if(bearingPick == "Mils"){
+      brng = brng * 17.777777777778;
+      return `${round(brng, 3)} Mils`;
     } else{
-    return (brng + 360) % 360;
+      return `${round(((brng + 360) % 360), 3)} Degrees`;
     }
   }
 
@@ -167,7 +179,7 @@ const CalculatorScreen = ({ navigation }) => {
               var bear = computeBearing(p1.lat, p1.lon, p2.lat, p2.lon);
               updateStateObject({
                 distance: `Distance: ${dist}`,
-                bearing: `Bearing: ${round(bear, 3)} degrees`,
+                bearing: `Bearing: ${bear}`
               });
           }
         }}
@@ -216,4 +228,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CalculatorScreen;
+export default Calculator;
