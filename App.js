@@ -20,7 +20,8 @@ export default function App() {
           },
           headerTitleStyle: {
             textAlign: 'center',
-            flext: 1
+            flext: 1,
+            color: "#ffffff"
             
           }
         }}

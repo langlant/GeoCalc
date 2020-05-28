@@ -118,7 +118,7 @@ const Calculator = ({ navigation, route }) => {
 
     <Padder>
       <Padder>
-        <Text style={styles.header}> Geo Calculator</Text>
+
       </Padder>
       <Input
         placeholder="Enter latitude for point 1"
